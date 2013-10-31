@@ -845,6 +845,27 @@ footer {
   font-family: 'Raleway', sans-serif;
   font-size: 14.4px;
 }
+footer .decoration {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  height: 140px;
+}
+footer .decoration .left,
+footer .decoration .right {
+  position: absolute;
+  width: 40%;
+  max-width: 492px;
+  top: -15%;
+}
+footer .decoration .left {
+  left: 0px;
+  content: url(../img/footer-left.png);
+}
+footer .decoration .right {
+  right: 0px;
+  content: url(../img/footer-right.png);
+}
 footer .wrapper {
   margin-bottom: 0px;
   padding: 0px 0px 30px;
@@ -885,18 +906,19 @@ footer .gradients::before {
 footer .map {
   width: 100%;
   height: 200px;
-  margin-bottom: 7px;
-  line-height: 200px;
+  margin-bottom: 20px;
   text-align: center;
   background: #ddd;
   color: #bbb;
+  border: 10px solid #FFF;
 }
 footer .map #footerMap {
   display: block;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0px;
+  border: 1px solid #DDD;
 }
 footer adress {
   display: block;
@@ -907,53 +929,6 @@ footer .contantInfo {
   float: left;
   display: block;
   margin-bottom: 14px;
-}
-footer {
-  background: url(http://sfh.salmiakmedia.se/wordpress/wp-content/themes/sfh/css/../img/bgFooter.png) #1b313a;
-  color: #FFF;
-  padding: 0;
-  margin: 40px 0 0;
-  position: relative;
-  z-index: 0;
-  font-family: 'Raleway', sans-serif;
-  font-size: 14.4px;
-}
-footer .decoration {
-  width: 100%;
-  position: relative;
-  z-index: 3;
-  height: 140px;
-}
-footer .decoration .left,
-footer .decoration .right {
-  position: absolute;
-  width: 40%;
-  max-width: 492px;
-  top: -15%;
-}
-footer .decoration .left {
-  left: 0px;
-  content: url(http://sfh.salmiakmedia.se/wordpress/wp-content/themes/sfh/css/../img/footer-left.png);
-}
-footer .decoration .right {
-  right: 0px;
-  content: url(http://sfh.salmiakmedia.se/wordpress/wp-content/themes/sfh/css/../img/footer-right.png);
-}
-footer .gradients {
-  background-color: rgba(0, 0, 0, 0.3);
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0)));
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 140px;
-  display: block;
-  content: '';
-  z-index: 1;
 }
 .headerMap {
   position: relative;
@@ -1102,5 +1077,3 @@ footer .gradients {
     page-break-after: avoid;
   }
 }
-
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
