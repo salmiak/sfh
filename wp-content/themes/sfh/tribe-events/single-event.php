@@ -31,6 +31,7 @@ $event_id = get_the_ID();
     		  <h1 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h1>
   		    <div class="cats"><?php echo get_cat_list($post);  ?></div>
   		    <?php the_content() ?>
+    		  <div class="clear"></div>
   		  </div>
   		  
   		</article>

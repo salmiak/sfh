@@ -347,6 +347,14 @@ ul.no-decoration {
   margin: 0px;
   list-style: none;
 }
+.alignright {
+  float: right;
+  margin-left: 10px;
+}
+.alignleft {
+  float: left;
+  margin-right: 10px;
+}
 .dateIcon {
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
@@ -382,6 +390,24 @@ ul.no-decoration {
 }
 #tribe-bar-form {
   background: none !important;
+}
+.tribe-events-calendar,
+.tribe-events-sub-nav,
+#tribe-bar-form label,
+#tribe-bar-form .tribe-bar-submit input[type=submit] {
+  font-family: 'Raleway', sans-serif;
+}
+.tribe-events-sub-nav,
+.tribe-events-calendar thead th,
+#tribe-bar-form label,
+#tribe-bar-form .tribe-bar-submit input[type=submit] {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  letter-spacing: 0.07em !important;
+}
+#tribe-events-content .tribe-events-calendar div[id*="tribe-events-event-"] h3.tribe-events-month-event-title {
+  font-family: 'Vollkorn', Georgia, serif !important;
+  font-weight: normal !important;
 }
 body {
   font: 400 16px 'Vollkorn', Georgia, serif;
@@ -855,7 +881,7 @@ footer .decoration .left,
 footer .decoration .right {
   position: absolute;
   width: 40%;
-  max-width: 492px;
+  max-width: 600px;
   top: -15%;
 }
 footer .decoration .left {
