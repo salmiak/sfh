@@ -62,6 +62,7 @@ wp_reset_postdata();
 		<div id="frontpageEventsFeed" class="container_5">
 		
 		  <?php 
+		  
 		    $activeCat = $_GET['cat'];
 		   	$args = array(
         	'type'      => 'tribe_events',
@@ -87,7 +88,10 @@ wp_reset_postdata();
 		  <div class="clear"></div>
 		  
 		  <?php // The Query
-		  $args = array( 'post_type' => 'tribe_events' );
+		  $args = array( 
+		    'posts_per_page' => get_settings('posts_per_page'),
+		    'post_type' => 'tribe_events'
+		  );
 		  if( $activeCat ) $args['tribe_events_cat'] = $activeCat;
 		    
       $the_query = new WP_Query( $args );
@@ -119,6 +123,12 @@ wp_reset_postdata();
       /* Restore original Post Data */
       wp_reset_postdata();
       ?>
+      
+      <div id="ajax-load-more">
+      	<div class="listing" data-path="<?php echo get_template_directory_uri(); ?>" data-post-type="tribe_events" data-category="" data-taxonomy="" data-tag="" data-author="" data-display-posts="3" data-button-text="Load More">
+      	<!-- Load Ajax Posts Here -->
+      	</div>
+      </div>
   		
 		</div>
 		<div id="frontpageSidebar" class="container_4"><div class="inside">
