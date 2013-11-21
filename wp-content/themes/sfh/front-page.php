@@ -2,7 +2,7 @@
   		  
 <?php // The Query
 $args = array(
-  'posts_per_page' => 3,
+  'posts_per_page' => 8,
   'post_type' => 'tribe_events',
   'meta_query' => array(
     array(
@@ -27,17 +27,34 @@ if ( $the_query->have_posts() ) { ?>
         		$the_query->the_post(); ?>
   		
     		<div class="slide">
-    		  <?php the_dateIcon( $post ); ?>
-      		<div class="container_6"><div class="frontpageSliderImgContainer">
-        		 <?php echo get_the_post_thumbnail( $post_id, 'topImage', array( 'class' => 'withFiller' ) ) ?>
-        		 <img src="<? bloginfo('template_url'); ?>/img/sliderFiller.png" class="responsive" />
-      		</div></div>
-      		<div class="frontpageSliderTextContainer container_3"><div class="inside">
-      		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
-      		  <div class="cats"><?php echo get_cat_list($post);  ?></div>
-      		  <p><?php the_content() ?></p>
-      		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
-      		</div></div>
+    		  <?php if(has_post_thumbnail()) { ?>
+    		    <div class="frontpageSliderWithImgContainer">
+      		    <?php the_dateIcon( $post ); ?>
+          		<div class="container_6"><div class="frontpageSliderImgContainer">
+            		 <?php echo get_the_post_thumbnail( $post_id, 'topImage', array( 'class' => 'withFiller' ) ) ?>
+            		 <img src="<? bloginfo('template_url'); ?>/img/sliderFiller.png" class="responsive" />
+          		</div></div>
+          		<div class="frontpageSliderTextContainer container_3"><div class="inside">
+          		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
+          		  <div class="cats"><?php echo get_cat_list($post);  ?></div>
+          		  <p><?php the_content() ?></p>
+          		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
+          		</div></div>
+            </div>
+      		<?php } else { ?>
+      		  <div class="frontpageSliderNoImgContainer bg-<?php the_field('color') ?>">
+              <?php the_dateIcon( $post ); ?>
+        		  <h2 class="title text-center"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
+        		  <div class="frontpageSliderTextContainer"><div class="inside">
+          		  <div class="cats"><?php echo get_cat_list($post);  ?></div>
+          		  <p><?php the_content() ?></p>
+          		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
+        		  </div></div>
+        		  <div class="container_6"><div class="frontpageSliderImgContainer">
+                <img src="<? bloginfo('template_url'); ?>/img/sliderFiller.png" class="responsive" style="visibility: hidden;" />
+              </div></div>
+      		  </div>
+      		<?php } ?>
       		<div class="clear"></div>
     		</div>
         		
