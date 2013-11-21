@@ -29,14 +29,14 @@ $(function() {
             }else{
 	            $button = $content.attr('data-button-text');
             }
-	        $el.append('<p id="load-more" class="more"><span class="loader"></span><span class="text">'+$button+'</span></p>');
+	        $el.append('<p id="load-more" class="more text-center" style="margin-top: 30px"><span class="loader"></span><span class="text btn">'+$button+'</span></p>');
 	        
 	    //Load posts function
 	    var load_posts = function(){	    	
     		
             
             $('#load-more').addClass('loading');
-			$('#load-more span.text').text("Loading...");
+            $('#load-more span.text').text("Laddar...");
             $.ajax({
                 type    : "GET",
                 data    : {                	
@@ -54,7 +54,7 @@ $(function() {
                 beforeSend : function(){
                     if(page != 1){
                         $('#load-more').addClass('loading');
-						$('#load-more span.text').text("Loading...");
+                        $('#load-more span.text').text("Laddar...");
                     }
                 },
                 success    : function(data){
@@ -65,7 +65,7 @@ $(function() {
                         $content.append($data);  
                         $data.fadeIn(500, function(){
 	                       $('#load-more').removeClass('loading');
-						   $('#load-more span.text').text($button);
+                         $('#load-more span.text').text($button);
 	                       $loading = false;
                        });
                     } else {
@@ -91,6 +91,7 @@ $(function() {
 	        }	    
 	    });
 	    
+	    /*
 	    $window.scroll(function() {
 	        var content_offset = $('#load-more').offset();
 	        if(!$loading && !$finished && $window.scrollTop() >= Math.round(content_offset.top - ($window.height() - 50)) && page < 5) {
@@ -99,6 +100,8 @@ $(function() {
 	            load_posts();
 	        }
 	    });
+	    */
+	    
 	    load_posts();
     }	
 		

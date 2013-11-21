@@ -125,7 +125,7 @@ wp_reset_postdata();
       ?>
       
       <div id="ajax-load-more">
-      	<div class="listing" data-path="<?php echo get_template_directory_uri(); ?>" data-post-type="tribe_events" data-category="" data-taxonomy="" data-tag="" data-author="" data-display-posts="3" data-button-text="Load More">
+      	<div class="listing" data-path="<?php echo get_template_directory_uri(); ?>" data-post-type="tribe_events" data-category="" data-taxonomy="" data-tag="" data-author="" data-display-posts="3" data-button-text="Visa fler events">
       	<!-- Load Ajax Posts Here -->
       	</div>
       </div>

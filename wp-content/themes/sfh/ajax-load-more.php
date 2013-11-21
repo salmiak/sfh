@@ -75,17 +75,6 @@ if (have_posts()) :
 	$i++;
 	the_post();?> 
 	
-	<?php /*
-	<li <?php if($i == 2){ $i = 0; echo 'class="even"';}?>>		
-		<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-		<p class="meta">
-	      <?php the_time('F j, Y'); ?>
-        </p>
-		<?php the_excerpt(); ?>
-		</div>
-	</li> */ ?>
-	
-	
     
   		<article class="inside withPadding">
   		  <a href="<?php the_permalink(); ?>">

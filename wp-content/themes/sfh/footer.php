@@ -42,7 +42,7 @@
   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDdAab4iBu6CngaYOQk3b42c9VdjswHNw&sensor=false"></script>
 	<script src="<?php bloginfo('template_url'); ?>/js/lib/jquery.cycle2.min.js" charset="utf-8"></script>
-  <script src="<?php bloginfo('template_url'); ?>/js/functions.js" charset="utf-8"></script>
+  <script src="<?php bloginfo('template_url'); ?>/js/loadmore.js" charset="utf-8"></script>
   <script src="<?php bloginfo('template_url'); ?>/js/sfh.js" charset="utf-8"></script>
 		
 	<?php wp_footer(); ?> 
