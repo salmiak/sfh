@@ -15,11 +15,9 @@ get_header(); ?>
   		  </div>
   		      		  
   		  <div class="content">
-  		    <?php the_dateIcon( $post ); ?>
     		  <h1 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h1>
   		    <div class="cats"><?php echo get_cat_list($post);  ?></div>
   		    <?php the_content() ?>
-    		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
   		  </div>
   		  
   		</article>
