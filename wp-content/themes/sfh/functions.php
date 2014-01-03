@@ -73,6 +73,22 @@ function get_cat_list($post) {
   return join(', ', $event_cat_list);
 }
 
+
+//---------------------------------------------------------------------------------
+//	Modifiera sammanfattning
+//  - Ta bort länken
+//  - Minska maxlängd till 20 ord
+//---------------------------------------------------------------------------------
+
+function new_excerpt_more( $more ) {
+	return '&hellip;';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+function custom_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
 //---------------------------------------------------------------------------------
 //	Aktivera widgets
 //---------------------------------------------------------------------------------
