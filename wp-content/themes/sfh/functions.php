@@ -89,6 +89,23 @@ function custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
+
+//---------------------------------------------------------------------------------
+//	Dölj oanvända fällt på redigera event
+//---------------------------------------------------------------------------------
+
+function hide_options() {
+   echo '<style type="text/css">
+           #event_venue,
+           #event_organizer,
+           #event_url,
+           #event_cost,
+           #eventDetails > .tribe_sectionheader {display:none}
+         </style>';
+}
+add_action('admin_head', 'hide_options');
+
+
 //---------------------------------------------------------------------------------
 //	Aktivera widgets
 //---------------------------------------------------------------------------------
