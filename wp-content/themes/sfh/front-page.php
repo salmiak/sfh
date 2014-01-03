@@ -115,37 +115,45 @@ wp_reset_postdata();
       
       // The Loop
       if ( $the_query->have_posts() ) {
-      	while ( $the_query->have_posts() ) {
-      		$the_query->the_post(); ?>
-    
-  		<article class="inside withPadding">
-  		  <a href="<?php the_permalink(); ?>">
-  		    <?php echo get_the_post_thumbnail( $post_id, 'topImage', array( 'class' => 'topimg responsive' ) ) ?>
-  		  </a>  		  
-  		  <div class="content">
-  		    <?php the_dateIcon( $post ); ?>
-    		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
-  		    <div class="cats"><?php echo get_cat_list($post);  ?></div>
-  		    <?php the_content() ?>
-    		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
-  		  </div>
-  		  
-  		</article>
-  		<div class="clear"></div>
-      		
-      	<?php }
-      } else {
-      	// no posts found
-      }
+        while ( $the_query->have_posts() ) {
+        	$the_query->the_post(); ?>
+      
+      		<!-- <article class="inside withPadding">
+      		  <a href="<?php the_permalink(); ?>">
+      		    <?php echo get_the_post_thumbnail( $post_id, 'topImage', array( 'class' => 'topimg responsive' ) ) ?>
+      		  </a>  		  
+      		  <div class="content">
+      		    <?php the_dateIcon( $post ); ?>
+        		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
+      		    <div class="cats"><?php echo get_cat_list($post);  ?></div>
+      		    <?php the_content() ?>
+        		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
+      		  </div>
+      		</article>
+      		<div class="clear"></div> -->
+      		 	
+      	<?php } ?>
+      
+        <div id="ajax-load-more">
+        	<div class="listing" data-path="<?php echo get_template_directory_uri(); ?>" data-post-type="tribe_events" data-category="<?php echo $activeCat ?>" data-taxonomy="tribe_events_cat" data-tag="" data-author="" data-display-posts="<?php echo get_settings('posts_per_page'); ?>" data-button-text="Visa fler events">
+        	<!-- Load Ajax Posts Here -->
+        	</div>
+        </div>
+      
+      <?php } else { ?>
+      
+    		<article class="inside withPadding">		  
+    		  <div class="content">
+      		  <h2 class="title">Inget <?php echo $activeCat ?> planerat just nu</h2>
+    		    <p>Just nu ligger inget planerat på Skaftö folketshus. Men vi uppdaterar vårt kalendarium flera gånger per år så titta gärna förbi snart igen.</p>
+    		  </div>
+    		</article>
+    		<div class="clear"></div>
+    		
+      <? }
       /* Restore original Post Data */
       wp_reset_postdata();
       ?>
-      
-      <div id="ajax-load-more">
-      	<div class="listing" data-path="<?php echo get_template_directory_uri(); ?>" data-post-type="tribe_events" data-category="" data-taxonomy="" data-tag="" data-author="" data-display-posts="3" data-button-text="Visa fler events">
-      	<!-- Load Ajax Posts Here -->
-      	</div>
-      </div>
   		
 		</div>
 		<div id="frontpageSidebar" class="container_4"><div class="inside">

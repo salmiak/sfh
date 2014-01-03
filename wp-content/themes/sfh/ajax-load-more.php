@@ -37,7 +37,7 @@ $args = array(
 	'paged'          => $page,
 	
 	'orderby'   => 'date',
-	'order'     => 'DESC',
+	'order'     => 'ASC',
 	'post_status' => 'publish',
 );
 
@@ -84,7 +84,7 @@ if (have_posts()) :
   		    <?php the_dateIcon( $post ); ?>
     		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
   		    <div class="cats"><?php echo get_cat_list($post);  ?></div>
-  		    <?php the_content() ?>
+  		    <?php the_excerpt() ?>
     		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
   		  </div>
   		  
