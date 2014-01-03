@@ -37,7 +37,7 @@ if ( $the_query->have_posts() ) { ?>
           		<div class="frontpageSliderTextContainer container_3"><div class="inside">
           		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
           		  <div class="cats"><?php echo get_cat_list($post);  ?></div>
-          		  <p><?php the_content() ?></p>
+          		  <p><?php the_excerpt() ?></p>
           		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
           		</div></div>
             </div>
@@ -47,7 +47,7 @@ if ( $the_query->have_posts() ) { ?>
         		  <h2 class="title text-center"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
         		  <div class="frontpageSliderTextContainer"><div class="inside">
           		  <div class="cats"><?php echo get_cat_list($post);  ?></div>
-          		  <p><?php the_content() ?></p>
+          		  <p><?php the_excerpt() ?></p>
           		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
         		  </div></div>
         		  <div class="container_6"><div class="frontpageSliderImgContainer">
