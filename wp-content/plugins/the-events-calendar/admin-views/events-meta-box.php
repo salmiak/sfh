@@ -37,8 +37,8 @@ if ( !defined('ABSPATH') ) { die('-1'); }
 		</tr>
 		<tr>
 			<td style="width:175px;"><?php _e('Start Date &amp; Time:','tribe-events-calendar'); ?></td>
-			<td>
-				<input autocomplete="off" tabindex="<?php tribe_events_tab_index(); ?>" type="text" class="datepicker" name="EventStartDate" id="EventStartDate"  value="<?php echo esc_attr($EventStartDate) ?>" />
+			<td id="tribe-event-datepickers" data-startofweek="<?php echo get_option( 'start_of_week' ); ?>">
+				<input autocomplete="off" tabindex="<?php tribe_events_tab_index(); ?>" type="text" class="tribe-datepicker" name="EventStartDate" id="EventStartDate"  value="<?php echo esc_attr($EventStartDate) ?>" />
 				<span class="helper-text hide-if-js"><?php _e('YYYY-MM-DD', 'tribe-events-calendar') ?></span>
 				<span class='timeofdayoptions'>
 					@
@@ -59,7 +59,7 @@ if ( !defined('ABSPATH') ) { die('-1'); }
 		<tr>
 			<td><?php _e('End Date &amp; Time:','tribe-events-calendar'); ?></td>
 			<td>
-				<input autocomplete="off" type="text" class="datepicker" name="EventEndDate" id="EventEndDate"  value="<?php echo esc_attr( $EventEndDate ); ?>" />
+				<input autocomplete="off" type="text" class="tribe-datepicker" name="EventEndDate" id="EventEndDate"  value="<?php echo esc_attr( $EventEndDate ); ?>" />
 				<span class="helper-text hide-if-js"><?php _e('YYYY-MM-DD', 'tribe-events-calendar') ?></span>
 				<span class='timeofdayoptions'>
 					@
@@ -82,11 +82,13 @@ if ( !defined('ABSPATH') ) { die('-1'); }
 	</td>
 	</tr>
 	</table>
-	<div class="tribe_sectionheader" style=""><h4><?php _e('Event Location Details', 'tribe-events-calendar'); ?></h4></div>
-		<table id="event_venue" class="eventtable">
-         <?php do_action('tribe_venue_table_top', $postId) ?>
-			<?php include( $this->pluginPath . 'admin-views/venue-meta-box.php' ); ?>
-		</table>
+	<table id="event_venue" class="eventtable">
+		<tr>
+			<td colspan="2" class="tribe_sectionheader"><h4><?php _e('Event Location Details', 'tribe-events-calendar'); ?></h4></td>
+		</tr>
+     <?php do_action('tribe_venue_table_top', $postId) ?>
+		<?php include( $this->pluginPath . 'admin-views/venue-meta-box.php' ); ?>
+	</table>
    <?php do_action('tribe_after_location_details', $postId); ?>
 	<table id="event_organizer" class="eventtable">
 			<tr>
@@ -116,7 +118,19 @@ if ( !defined('ABSPATH') ) { die('-1'); }
 		</tr>
 		<tr>
 			<td><?php _e('Currency Symbol:','tribe-events-calendar'); ?></td>
-			<td><input tabindex="<?php tribe_events_tab_index(); ?>" type='text' id='EventCurrencySymbol' name='EventCurrencySymbol' size='2' value='<?php echo (isset($_EventCurrencySymbol)) ? esc_attr($_EventCurrencySymbol) : tribe_get_option( 'defaultCurrencySymbol', '$' ); ?>' /></td>
+			<td>
+				<input tabindex="<?php tribe_events_tab_index(); ?>" type='text' id='EventCurrencySymbol' name='EventCurrencySymbol' size='2' value='<?php echo (isset($_EventCurrencySymbol)) ? esc_attr($_EventCurrencySymbol) : tribe_get_option( 'defaultCurrencySymbol', '$' ); ?>' />
+				<select tabindex="<?php tribe_events_tab_index(); ?>" id="EventCurrencyPosition" name="EventCurrencyPosition">
+					<?php
+						if ( isset($_EventCurrencyPosition) && 'suffix' === $_EventCurrencyPosition ) $suffix = true;
+						elseif ( isset($_EventCurrencyPosition) && 'prefix' === $_EventCurrencyPosition ) $suffix = false;
+						elseif ( true === tribe_get_option( 'reverseCurrencyPosition', false ) ) $suffix = true;
+						else $suffix = false;
+					?>
+					<option value="prefix"> <?php _ex( 'Before cost', 'Currency symbol position', 'tribe-events-calendar' ) ?> </option>
+					<option value="suffix"<?php if ( $suffix ) echo ' selected="selected"' ?>> <?php _ex( 'After cost', 'Currency symbol position', 'tribe-events-calendar' ) ?> </option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td><?php _e('Cost:','tribe-events-calendar'); ?></td>
