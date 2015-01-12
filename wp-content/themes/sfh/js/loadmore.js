@@ -9,37 +9,37 @@
  * Author: Darren Cooney
  * Twitter: @KaptonKaos
 */
-$(function() {		
-    
+$(function() {
+
     if($("#ajax-load-more").length){
 		var page = 1,
 	        $loading = true,
 	        $finished = false,
 	        $window = $(window),
 	        $el = $('#ajax-load-more'),
-	        $content = $('#ajax-load-more div'),	        
+	        $content = $('#ajax-load-more div'),
 	        $path =  $content.attr('data-path');
-	        
+
 	        if($path === undefined){
 		        $path = '/wp-content/themes/your-theme-here/ajax-load-more.php';
 	        }
 	        //Define button text
     	    if($content.attr('data-button-text') === undefined){
-                $button = 'Older Posts';
+              $button = 'Older Posts';
             }else{
 	            $button = $content.attr('data-button-text');
             }
 	        $el.append('<p id="load-more" class="more text-center" style="margin-top: 30px"><span class="loader"></span><span class="text btn">'+$button+'</span></p>');
-	        
+
 	    //Load posts function
-	    var load_posts = function(){	    	
-    		
-            
+	    var load_posts = function(){
+
+
             $('#load-more').addClass('loading');
             $('#load-more span.text').text("Laddar...");
             $.ajax({
                 type    : "GET",
-                data    : {                	
+                data    : {
                 	postType   : $content.attr('data-post-type'),
                 	category   : $content.attr('data-category'),
                 	author     : $content.attr('data-author'),
@@ -58,11 +58,11 @@ $(function() {
                     }
                 },
                 success    : function(data){
-                    $data = $('<span>'+data+'</span>');// Convert data to an object   
-                    //alert(data);           
+                    $data = $('<span>'+data+'</span>');// Convert data to an object
+                    //alert(data);
                     if(data.length > 1){
                         $data.hide();
-                        $content.append($data);  
+                        $content.append($data);
                         $data.fadeIn(500, function(){
 	                       $('#load-more').removeClass('loading');
                          $('#load-more span.text').text($button);
@@ -82,16 +82,15 @@ $(function() {
                 }
 	        });
 	    }
-	   
+
 	    $('#load-more').click(function(){
 		    if(!$loading && !$finished && !$(this).hasClass('done')) {
 	            $loading = true;
 	            page++;
 	            load_posts();
-	        }	    
+	        }
 	    });
-	    
-	    /*
+
 	    $window.scroll(function() {
 	        var content_offset = $('#load-more').offset();
 	        if(!$loading && !$finished && $window.scrollTop() >= Math.round(content_offset.top - ($window.height() - 50)) && page < 5) {
@@ -100,10 +99,9 @@ $(function() {
 	            load_posts();
 	        }
 	    });
-	    */
-	    
+
 	    load_posts();
-    }	
-		
+    }
+
 });
 

@@ -1,4 +1,6 @@
-<!--
+<?php
+
+/*
  * Wordpress Ajax Load More
  * https://github.com/dcooney/wordpress-ajax-load-more
  *
@@ -8,10 +10,9 @@
  *
  * Author: Darren Cooney
  * Twitter: @KaptonKaos
--->
+ */
 
 
-<?php
 // Our include
 define('WP_USE_THEMES', false);
 require_once('../../../wp-load.php');
@@ -30,15 +31,24 @@ $page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
 $args = array(
 	'post_type' => $postType,
 	'category_name' => $category,
-	
+
 	'author' => $author_id,
-	
+
 	'posts_per_page' => $numPosts,
 	'paged'          => $page,
-	
+
 	'orderby'   => 'date',
 	'order'     => 'ASC',
 	'post_status' => 'publish',
+
+  'meta_query' => array(
+    array(
+      'key'     => 'onlyInCalendar',
+      'value'   => '1',
+      'compare' => '!=', //default
+      'type'    => 'CHAR' //default
+    )
+  )
 );
 
 // Excluded Posts Function
@@ -46,9 +56,9 @@ $args = array(
 
 Example PHP array:
 $features = array('7238', '6649', '6951'); // Array of posts
-if($features){			
+if($features){
    $postsNotIn = implode(",", $features); //Implode the posts and set a varible to pass to our data-post-not-in param.
-}   
+}
 Example HTML
 <ul class="listing" data-path="<?php echo get_template_directory_uri(); ?>" data-post-type="post" data-post-not-in="<?php echo $postsNotIn; ?>" data-display-posts="6" data-button-text="Load More">
 */
@@ -62,24 +72,24 @@ if(!empty($exclude)){
 if(empty($taxonomy)){
 	$args['tag'] = $tag;
 }else{
-    $args[$taxonomy] = $tag;
+  $args[$taxonomy] = $tag;
 }
 
-query_posts($args); 
+query_posts($args);
 ?>
-<?php 
-// our loop  
-if (have_posts()) :  
+<?php
+// our loop
+if (have_posts()) :
 	$i =0;
-	while (have_posts()):  
+	while (have_posts()):
 	$i++;
-	the_post();?> 
-	
-    
+	the_post();?>
+
+
   		<article class="inside withPadding">
   		  <a href="<?php the_permalink(); ?>">
   		    <?php echo get_the_post_thumbnail( $post_id, 'topImage', array( 'class' => 'topimg responsive' ) ) ?>
-  		  </a>  		  
+  		  </a>
   		  <div class="content">
   		    <?php the_dateIcon( $post ); ?>
     		  <h2 class="title"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
@@ -87,9 +97,9 @@ if (have_posts()) :
   		    <?php the_excerpt() ?>
     		  <p class="text-right"><a href="<?php the_permalink(); ?>">Läs mer</a></p>
   		  </div>
-  		  
+
   		</article>
   		<div class="clear"></div>
-  		
-  		
-<?php endwhile; endif; wp_reset_query(); ?> 
+
+
+<?php endwhile; endif; wp_reset_query(); ?>

@@ -10,6 +10,8 @@
  * @author Modern Tribe Inc.
  *
  */
+ 
+remove_filter('tribe_events_after_footer', array('TribeiCal', 'maybe_add_link'), 10, 1);
 
 if ( !defined('ABSPATH') ) { die('-1'); } ?>
 
