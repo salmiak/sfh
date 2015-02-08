@@ -24,9 +24,11 @@ function the_dateIcon($post , $displayTime = true) {
   <div class="dateIcon">
 	  <div class="day"><?php echo date('d',  $eventDate); ?></div>
 	  <div class="month"><?php echo date('M',  $eventDate); ?></div>
-	  <?php if( $displayTime ) { ?>
+	  <?php if( $displayTime && date('G:i',  $eventDate) != '3:00' ) { ?>
 	    <div class="time"><?php echo date('G:i',  $eventDate); ?></div>
-	  <?php } ?>
+	  <?php } elseif ( date('G:i',  $eventDate) == '3:00' ) { ?>
+	    <div class="time" style="font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.1em;">Heldag</div>
+  	<?php  } ?>
   </div>
 <?php }
 
@@ -36,6 +38,7 @@ function event_dateIcon( $event = null, $displayTime = true, $dateFormat = '' ) 
       global $post;
       $event = $post;
   }
+
   if ( is_numeric( $event ) )
       $event = get_post( $event );
 
